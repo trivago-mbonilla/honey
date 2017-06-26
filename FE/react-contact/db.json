@@ -1,0 +1,10 @@
+
+{
+  "contacts": [
+    { "id": 1, "name": "Ester", "lastName": "Cobo Cobo", "phone": 6565656, "city": "Jaen" },
+    { "id": 2, "name": "Margot", "lastName": "Bonilla Perez", "phone": 6565656, "city": "Granada" },
+    { "id": 3, "name": "Raul", "lastName": "Sanchez Castillo", "phone": 6565656, "city": "Jaen" },
+    { "id": 4, "name": "Jonathan", "lastName": "Whatever Surname", "phone": 6565656, "city": "Palma" },
+    { "id": 5, "name": "Rafael", "lastName": "Moral Moral", "phone": 6565656, "city": "Madrid" }
+  ]
+}
