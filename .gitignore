@@ -1,0 +1,6 @@
+BE/*/.idea
+BE/*/web
+BE/*/var
+
+FE/*/.idea
+FE/*/node_modules
