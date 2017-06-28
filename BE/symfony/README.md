@@ -8,14 +8,25 @@ ResAPI vs GraphQL
 
 **Library:** https://github.com/Youshido/GraphQLBundle
 
-# Start
+## Database
+```bash
+php bin/console doctrine:database:drop --force
+```
+```bash
+php bin/console doctrine:database:create
+```
+```bash
+php bin/console doctrine:schema:update --force
+```
+
+## Start
 
 * run server
 ```php
 php bin/console server:run
 ```
 
-# Test
+## Test
 
 * Rest API doc: http://127.0.0.1:8000/api/doc
 * GraphQL test: http://127.0.0.1:8000/graphql/explorer

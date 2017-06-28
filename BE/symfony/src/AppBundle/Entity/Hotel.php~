@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Hotel
  * @ORM\Table(name="hotel")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\hotelRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\HotelRepository")
  */
 class Hotel
 {
@@ -30,6 +30,12 @@ class Hotel
      * @ORM\Column(name="name", type="string")
      */
     private $name;
+
+    /**
+     * @var Contact[]
+     * @ORM\ManyToMany(targetEntity="Hotel", mappedBy="hotels")
+     */
+    private $contacts;
 
     /**
      * Get id

@@ -9,10 +9,11 @@
 namespace GraphAppBundle\Entity\Hotel;
 
 use Doctrine\ORM\Mapping as ORM;
+use GraphAppBundle\Entity\Contact;
 
 /**
  * Class Hotel
- * @ORM\Table(name="hotel")
+ * @ORM\Table(name="hotel_graph")
  * @ORM\Entity(repositoryClass="GraphAppBundle\Entity\Hotel\HotelRepository")
  */
 class Hotel
@@ -30,6 +31,12 @@ class Hotel
      * @ORM\Column(name="name", type="string")
      */
     private $name;
+
+    /**
+     * @var Contact[]
+     * @ORM\ManyToMany(targetEntity="GraphAppBundle\Entity\Contact\Contact", mappedBy="hotels")
+     */
+    private $contacts;
 
     /**
      * Get id
@@ -63,5 +70,21 @@ class Hotel
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Contact[]
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
+
+    /**
+     * @param Contact[] $contacts
+     */
+    public function setContacts($contacts)
+    {
+        $this->contacts = $contacts;
     }
 }
