@@ -9,7 +9,9 @@
 namespace GraphAppBundle\Entity\Hotel;
 
 
+use GraphAppBundle\Entity\Contact\ContactType;
 use Youshido\GraphQL\Config\Object\ObjectTypeConfig;
+use Youshido\GraphQL\Type\ListType\ListType;
 use Youshido\GraphQL\Type\Object\AbstractObjectType;
 use Youshido\GraphQL\Type\Scalar\IdType;
 use Youshido\GraphQL\Type\Scalar\StringType;
@@ -25,6 +27,7 @@ class HotelType extends AbstractObjectType
         $config->addFields([
             'id'   => new IdType(),
             'name' => new StringType(),
+            'contacts' => new ListType(new ContactType()),
         ]);
     }
 }

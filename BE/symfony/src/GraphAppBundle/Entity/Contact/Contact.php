@@ -167,11 +167,11 @@ class Contact
     /**
      * Add hotel
      *
-     * @param \AppBundle\Entity\Hotel $hotel
+     * @param Hotel $hotel
      *
      * @return Contact
      */
-    public function addHotel(\AppBundle\Entity\Hotel $hotel)
+    public function addHotel(Hotel $hotel)
     {
         $this->hotels[] = $hotel;
 
@@ -181,9 +181,9 @@ class Contact
     /**
      * Remove hotel
      *
-     * @param \AppBundle\Entity\Hotel $hotel
+     * @param Hotel $hotel
      */
-    public function removeHotel(\AppBundle\Entity\Hotel $hotel)
+    public function removeHotel(Hotel $hotel)
     {
         $this->hotels->removeElement($hotel);
     }

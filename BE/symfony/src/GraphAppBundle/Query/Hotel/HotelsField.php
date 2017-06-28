@@ -2,14 +2,12 @@
 
 namespace GraphAppBundle\Query\Hotel;
 
+use Doctrine\ORM\EntityManager;
 use GraphAppBundle\Entity\Hotel\Hotel;
 use GraphAppBundle\Entity\Hotel\HotelType;
 use Youshido\GraphQL\Config\Field\FieldConfig;
 use Youshido\GraphQL\Execution\ResolveInfo;
-use Youshido\GraphQL\Type\AbstractType;
 use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\NonNullType;
-use Youshido\GraphQL\Type\Scalar\IdType;
 use Youshido\GraphQLBundle\Field\AbstractContainerAwareField;
 
 /**
@@ -27,6 +25,7 @@ class HotelsField extends AbstractContainerAwareField
 
     public function resolve($parent, array $args, ResolveInfo $info)
     {
+        /** @var EntityManager $em */
         $em = $this->container->get('doctrine')->getManager();
         $repository = $em->getRepository(Hotel::class);
 

@@ -10,6 +10,11 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations as Rest;
 
+/**
+ * Class ContactController
+ * @package AppBundle\Controller
+ * @Rest\View(serializerGroups={"contact", "simple"})
+ */
 class ContactController extends FOSRestController
 {
     /**
@@ -19,7 +24,6 @@ class ContactController extends FOSRestController
      * )
      *
      * @Rest\Get("/contacts", name="contacts")
-     * @Rest\View(serializerGroups={"contact", "simple"})
      */
     public function showAllAction(EntityManagerInterface $em)
     {
@@ -79,7 +83,6 @@ class ContactController extends FOSRestController
 
     /**
      * @Rest\Get("/contacts/create-amount/{amount}")
-     * @Rest\View(serializerGroups={"contact", "simple"})
      */
     public function createAmountAction(EntityManagerInterface $em, $amount)
     {
@@ -109,7 +112,6 @@ class ContactController extends FOSRestController
 
     /**
      * @Rest\Get("/contacts/{contactId}/relate-hotel/{hotelId}", name="new_contacts_amount")
-     * @Rest\View(serializerGroups={"contact", "simple"})
      */
     public function relateContactWithHotelsAction($contactId, $hotelId, EntityManagerInterface $em)
     {

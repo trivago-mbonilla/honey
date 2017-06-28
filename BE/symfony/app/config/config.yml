@@ -45,10 +45,9 @@ fos_rest:
     format_listener:
         rules: # From more to less restrictive
             - { path: '^/api', priorities: ['json'], fallback_format: json, prefer_extension: false }
+            - { path: '^/graphql' }
     view:
         view_response_listener: 'force'
-#    service:
-#        serializer: base7.api.serializer_adapter
 # Twig Configuration
 twig:
     debug: '%kernel.debug%'

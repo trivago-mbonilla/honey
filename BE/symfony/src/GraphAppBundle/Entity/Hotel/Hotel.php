@@ -33,8 +33,9 @@ class Hotel
     private $name;
 
     /**
-     * @var Contact[]
-     * @ORM\ManyToMany(targetEntity="GraphAppBundle\Entity\Contact\Contact", mappedBy="hotels")
+     * @var Contact\Contact[]
+     * @ORM\ManyToMany(targetEntity="GraphAppBundle\Entity\Contact\Contact", inversedBy="hotels")
+     * @ORM\JoinTable(name="hotel_contact_graph")
      */
     private $contacts;
 
@@ -73,7 +74,7 @@ class Hotel
     }
 
     /**
-     * @return Contact[]
+     * @return Contact\Contact[]
      */
     public function getContacts()
     {
@@ -81,10 +82,33 @@ class Hotel
     }
 
     /**
-     * @param Contact[] $contacts
+     * @param Contact\Contact[] $contacts
      */
     public function setContacts($contacts)
     {
         $this->contacts = $contacts;
+    }
+    /**
+     * Add contact
+     *
+     * @param Contact\Contact $contact
+     *
+     * @return Hotel
+     */
+    public function addContact(Contact\Contact $contact)
+    {
+        $this->contacts[] = $contact;
+
+        return $this;
+    }
+
+    /**
+     * Remove contact
+     *
+     * @param Contact\Contact $contact
+     */
+    public function removeContact(Contact\Contact $contact)
+    {
+        $this->contacts->removeElement($contact);
     }
 }

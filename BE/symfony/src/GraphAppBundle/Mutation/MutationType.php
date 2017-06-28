@@ -10,6 +10,7 @@ namespace GraphAppBundle\Mutation;
 
 
 use GraphAppBundle\Mutation\Hotel\AddAmountHotelsField;
+use GraphAppBundle\Mutation\Hotel\AddHotelContactField;
 use GraphAppBundle\Mutation\Hotel\AddHotelField;
 use Youshido\GraphQL\Config\Object\ObjectTypeConfig;
 use Youshido\GraphQL\Type\Object\AbstractObjectType;
@@ -24,7 +25,8 @@ class MutationType extends  AbstractObjectType
     {
         $config->addFields([
             new AddHotelField(),
-            new AddAmountHotelsField()
+            new AddAmountHotelsField(),
+            new AddHotelContactField(),
         ]);
     }
 }
