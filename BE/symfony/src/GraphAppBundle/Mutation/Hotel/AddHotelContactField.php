@@ -38,12 +38,9 @@ class AddHotelContactField extends AbstractContainerAwareField
         $contactRepository = $em->getRepository(Contact::class);
 
         $hotel = $hotelRepository->find($args['hotel_id']);
-
         $contact = $contactRepository->find($args['contact_id']);
 
         $hotel->addContact($contact);
-//        $contact->addHotel($hotel);
-
         $em->flush();
 
         return $hotel;

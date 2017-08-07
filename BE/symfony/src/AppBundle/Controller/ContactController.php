@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class ContactController
@@ -58,31 +59,26 @@ class ContactController extends FOSRestController
      *     output="AppBundle\Entity\Contact"
      * )
      *
-     * @Rest\Get("/contacts/create", name="new_contact")
+     * @Rest\Post("/contacts", name="new_contact")
      */
-    public function createAction(EntityManagerInterface $em)
+    public function createAction(Request $request, EntityManagerInterface $em)
     {
-        // or fetch the em via the container
-        /** @var EntityManager $em */
-        $em = $this->get('doctrine')->getManager();
+        $data = $request->request->all();
 
         $contact = new Contact();
-        $contact->setName('tes');
-        $contact->setLastName('test');
-        $contact->setPhone('test');
-        $contact->setCity('test');
+        $contact->setName($data['name']);
+        $contact->setLastName($data['lastName']);
+        $contact->setPhone($data['phone']);
+        $contact->setCity($data['city']);
 
-        // tells Doctrine you want to (eventually) save the Product (no queries yet)
         $em->persist($contact);
-
-        // actually executes the queries (i.e. the INSERT query)
         $em->flush();
 
         return $contact;
     }
 
     /**
-     * @Rest\Get("/contacts/create-amount/{amount}")
+     * @Rest\Post("/contacts/create-amount/{amount}")
      */
     public function createAmountAction(EntityManagerInterface $em, $amount)
     {
@@ -94,8 +90,6 @@ class ContactController extends FOSRestController
             $contact->setCity('test');
 
             $em->persist($contact);
-
-            // actually executes the queries (i.e. the INSERT query)
             $em->flush();
         }
 
@@ -111,12 +105,14 @@ class ContactController extends FOSRestController
     }
 
     /**
-     * @Rest\Get("/contacts/{contactId}/relate-hotel/{hotelId}", name="new_contacts_amount")
+     * @Rest\Post("/contacts/relate-hotel", name="new_contacts_amount")
      */
-    public function relateContactWithHotelsAction($contactId, $hotelId, EntityManagerInterface $em)
+    public function relateContactWithHotelsAction(Request $request, EntityManagerInterface $em)
     {
-        $contact = $em->getRepository(Contact::class)->find($contactId);
-        $hotel = $em->getRepository(Hotel::class)->find($hotelId);
+        $data = $request->request->all();
+
+        $contact = $em->getRepository(Contact::class)->find($data['contact_id']);
+        $hotel = $em->getRepository(Hotel::class)->find($data['hotel_id']);
         $contact->addHotel($hotel);
         $em->flush();
 

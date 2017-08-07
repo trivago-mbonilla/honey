@@ -1,0 +1,14 @@
+{
+	"dev": {
+		"driver": "mysql",
+		"user": "root",
+		"database": "honey",
+		"password": "root"
+
+	},
+	"prod": {
+		"driver": "mysql",
+		"user": "root",
+		"database": "honey"
+	}
+}

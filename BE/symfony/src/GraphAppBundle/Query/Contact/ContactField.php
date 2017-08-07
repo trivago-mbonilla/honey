@@ -1,44 +1,38 @@
 <?php
 
-namespace GraphAppBundle\Query\Hotel;
+namespace GraphAppBundle\Query\Contact;
 
 use Doctrine\ORM\EntityManager;
-use GraphAppBundle\Entity\Hotel\Hotel;
-use GraphAppBundle\Entity\Hotel\HotelType;
+use GraphAppBundle\Entity\Contact\Contact;
+use GraphAppBundle\Entity\Contact\ContactType;
 use Youshido\GraphQL\Config\Field\FieldConfig;
 use Youshido\GraphQL\Execution\ResolveInfo;
 use Youshido\GraphQL\Type\NonNullType;
 use Youshido\GraphQL\Type\Scalar\IdType;
 use Youshido\GraphQLBundle\Field\AbstractContainerAwareField;
 
-/**
- * Created by PhpStorm.
- * User: mbonilla
- * Date: 6/25/17
- * Time: 1:48 PM
- */
-class HotelField extends AbstractContainerAwareField
+class ContactField extends AbstractContainerAwareField
 {
     public function build(FieldConfig $config)
     {
         $config->addArgument("id", new NonNullType(new IdType()));
 
-        $config->setDescription("Get hotel by id");
+        $config->setDescription("Get contact by id");
     }
 
     public function resolve($parent, array $args, ResolveInfo $info)
     {
         /** @var EntityManager $em */
         $em = $this->container->get('doctrine')->getManager();
-        $repository = $em->getRepository(Hotel::class);
+        $repository = $em->getRepository(Contact::class);
 
         return $repository->find($args['id']);
     }
     /**
-     * @return HotelType
+     * @return ContactType
      */
     public function getType()
     {
-        return new HotelType();
+        return new ContactType();
     }
 }

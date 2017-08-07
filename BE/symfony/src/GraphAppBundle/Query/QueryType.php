@@ -2,6 +2,8 @@
 
 namespace GraphAppBundle\Query;
 
+use GraphAppBundle\Query\Contact\ContactField;
+use GraphAppBundle\Query\Contact\ContactsField;
 use GraphAppBundle\Query\Hotel\HotelField;
 use GraphAppBundle\Query\Hotel\HotelsField;
 use Youshido\GraphQL\Config\Object\ObjectTypeConfig;
@@ -17,6 +19,8 @@ class QueryType extends AbstractObjectType
         $config->addFields([
             new HotelField(),
             new HotelsField(),
+            new ContactField(),
+            new ContactsField(),
         ]);
     }
 }

@@ -6,7 +6,7 @@
   "types": "lib/index",
   "scripts": {
     "start": "npm run build:live",
-    "build:live": "nodemon --exec $(npm bin)/ts-node -- ./server.ts"
+    "build:live": "nodemon --exec $(npm bin)/ts-node -- ./index.ts"
   },
   "author": "mbonilla",
   "license": "ISC",

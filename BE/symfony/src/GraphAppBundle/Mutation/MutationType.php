@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mbonilla
- * Date: 6/25/17
- * Time: 2:10 PM
- */
 
 namespace GraphAppBundle\Mutation;
 
-
+use GraphAppBundle\Mutation\Contact\AddContactField;
 use GraphAppBundle\Mutation\Hotel\AddAmountHotelsField;
 use GraphAppBundle\Mutation\Hotel\AddHotelContactField;
 use GraphAppBundle\Mutation\Hotel\AddHotelField;
@@ -27,6 +21,7 @@ class MutationType extends  AbstractObjectType
             new AddHotelField(),
             new AddAmountHotelsField(),
             new AddHotelContactField(),
+            new AddContactField(),
         ]);
     }
 }
