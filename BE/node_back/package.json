@@ -2,9 +2,11 @@
   "name": "node",
   "version": "1.0.0",
   "description": "test velocity node API and GraphQL",
-  "main": "server.js",
+  "main": "lib/index",
+  "types": "lib/index",
   "scripts": {
-    "test": "test"
+    "start": "npm run build:live",
+    "build:live": "nodemon --exec $(npm bin)/ts-node -- ./server.ts"
   },
   "author": "mbonilla",
   "license": "ISC",
@@ -15,5 +17,12 @@
     "express-myconnection": "^1.0.4",
     "express-validator": "^3.2.0",
     "mysql": "^2.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.6",
+    "nodemon": "^1.11.0",
+    "ts-node": "^3.1.0",
+    "tslint": "^5.4.3",
+    "typescript": "^2.4.1"
   }
 }
