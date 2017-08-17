@@ -1,16 +1,6 @@
 import { ADD_CONTACT, REMOVE_CONTACT, SHOW_CREATE_CONTACT } from '../actions/index';
 
-const initialState = {
-    contacts: [{
-        id: 1,
-        name: "Ester",
-        lastName: "Cobo Cobo",
-        phone: 6565656,
-        city: "Jaen"
-    }]
-};
-
-function contactReducers(state = initialState, action) {
+function contactReducers(state = {}, action) {
     switch (action.type) {
         case ADD_CONTACT:
             action.newContact.id = Math.floor(Math.random() * 100);
