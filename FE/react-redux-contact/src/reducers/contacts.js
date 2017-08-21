@@ -1,4 +1,4 @@
-import { ADD_CONTACT, REMOVE_CONTACT, SHOW_CREATE_CONTACT } from '../actions/index';
+import { ADD_CONTACT, REMOVE_CONTACT, SHOW_CREATE_CONTACT, REQUEST_CONTACTS, RECEIVE_CONTACTS } from '../actions/index';
 
 function contactReducers(state = {}, action) {
     switch (action.type) {
@@ -18,6 +18,12 @@ function contactReducers(state = {}, action) {
             return {
                 ...state,
                 contacts: state.contacts.filter(contact => contact.id !== action.id)
+            };
+        case REQUEST_CONTACTS:
+        case RECEIVE_CONTACTS:
+            return {
+                ...state,
+                contacts: action.contacts
             };
         default:
             return state;
