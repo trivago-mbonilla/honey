@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ContactInfo from '../components/ContactInfo/ContactInfo';
-import CreateContact from '../components/CreateContact/CreateContact';
-import { addContact, removeContact, showCreateContact, fetchContactsIfNeeded } from '../actions/index';
+import { removeContact, fetchContactsIfNeeded } from '../actions/index';
+import { Link } from 'react-router-dom';
 
-class ContactViewContainer extends Component {
+class ContactView extends Component {
 
     componentDidMount() {
         const { fetchContacts } = this.props;
@@ -13,8 +13,7 @@ class ContactViewContainer extends Component {
     }
 
     render() {
-        const {contacts, showCreateContact, deleteContact, saveContact, toogleShowCreateContact} = this.props;
-        let newContact = [];
+        const {contacts, deleteContact} = this.props;
 
         if (!contacts) { return null; }
 
@@ -28,24 +27,13 @@ class ContactViewContainer extends Component {
                         onClick={() => deleteContact(contact.id)} // two ways to create functions
                     />
                 ) }
-
-                <button
-                    onClick={() => toogleShowCreateContact(showCreateContact)}
-                    type="button"
-                >Create contact</button>
-
-                { showCreateContact
-                && <CreateContact
-                    newContact={newContact}
-                    onSubmit={saveContact} // two ways to create functions
-                />}
+                <Link to='/create'>Create contact</Link>
             </div>
         );
     }
 }
 
-ContactViewContainer.propTypes = {
-    showCreateContact: PropTypes.bool,
+ContactView.propTypes = {
     contacts: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
@@ -54,27 +42,18 @@ ContactViewContainer.propTypes = {
             phone: PropTypes.number
         })
     ),
-    deleteContact: PropTypes.func.isRequired,
-    saveContact: PropTypes.func.isRequired,
-    toogleShowCreateContact: PropTypes.func.isRequired
+    deleteContact: PropTypes.func.isRequired
 };
 
 
 const mapStateToProps = (state, ownProps) => ({
-    contacts: state.contacts,
-    showCreateContact: state.showCreateContact
+    contacts: state.contacts
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         deleteContact: id => {
             dispatch(removeContact(id))
-        },
-        saveContact: newContact => {
-            dispatch(addContact(newContact))
-        },
-        toogleShowCreateContact: isShown => {
-            dispatch(showCreateContact(!isShown))
         },
         fetchContacts: () => {
             dispatch(fetchContactsIfNeeded())
@@ -85,4 +64,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(ContactViewContainer);
+)(ContactView);

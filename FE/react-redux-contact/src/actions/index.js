@@ -6,7 +6,8 @@
  * action types
  */
 export const ADD_CONTACT = 'ADD_CONTACT';
-export const SHOW_CREATE_CONTACT = 'SHOW_CREATE_CONTACT';
+export const UPDATE_FORM_NEW_CONTACT = 'UPDATE_FORM_NEW_CONTACT';
+export const SET_IS_CONTACT_SAVED = 'SET_IS_CONTACT_SAVED';
 export const REMOVE_CONTACT = 'REMOVE_CONTACT';
 export const REQUEST_CONTACTS = 'REQUEST_CONTACTS';
 export const RECEIVE_CONTACTS = 'RECEIVE_CONTACTS';
@@ -22,10 +23,18 @@ export function addContact(newContact) {
     }
 }
 
-export function showCreateContact(isShown) {
+export function updateFormNewContact(newValue, field) {
     return {
-        type: SHOW_CREATE_CONTACT,
-        isShown
+        type: UPDATE_FORM_NEW_CONTACT,
+        newValue: newValue,
+        field: field
+    }
+}
+
+export function setIsContactSaved(isContactSaved) {
+    return {
+        type: SET_IS_CONTACT_SAVED,
+        isContactSaved: isContactSaved
     }
 }
 
@@ -50,7 +59,7 @@ function receiveContacts(contacts) {
 }
 
 function shouldFetchContacts(state) {
-    return (!state.contacts);
+    return (!state.contacts || 0 === state.contacts.length);
 }
 
 function fetchContacts() {

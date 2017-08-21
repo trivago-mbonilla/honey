@@ -1,6 +1,17 @@
-import { ADD_CONTACT, REMOVE_CONTACT, SHOW_CREATE_CONTACT, REQUEST_CONTACTS, RECEIVE_CONTACTS } from '../actions/index';
+import { ADD_CONTACT, UPDATE_FORM_NEW_CONTACT, SET_IS_CONTACT_SAVED, REMOVE_CONTACT, REQUEST_CONTACTS, RECEIVE_CONTACTS } from '../actions/index';
 
-function contactReducers(state = {}, action) {
+const initialState = {
+    contacts: [],
+    newContact: {
+        id: '',
+        name: '',
+        lastName: '',
+        phone: ''
+    },
+    isContactSaved: false
+};
+
+function contactReducers(state = initialState, action) {
     switch (action.type) {
         case ADD_CONTACT:
             action.newContact.id = Math.floor(Math.random() * 100);
@@ -8,11 +19,16 @@ function contactReducers(state = {}, action) {
                 ...state,
                 contacts: [...state.contacts, action.newContact]
             };
-
-        case SHOW_CREATE_CONTACT:
+        case UPDATE_FORM_NEW_CONTACT:
+            const newContact = Object.assign({}, state.newContact, {[action.field]: action.newValue});
             return {
                 ...state,
-                showCreateContact: action.isShown
+                newContact: newContact
+            };
+        case SET_IS_CONTACT_SAVED:
+            return {
+                ...state,
+                isContactSaved: action.isContactSaved
             };
         case REMOVE_CONTACT:
             return {

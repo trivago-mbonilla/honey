@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
-import ContactViewContainer from './containers/ContactViewContainer';
+import ContactView from './containers/ContactView';
+import CreateContact from './containers/CreateContact';
+import { Switch, Route } from 'react-router-dom';
 
 class App extends Component {
     render() {
         return (
             <div className="App">
-                <ContactViewContainer />
+                <Switch>
+                    <Route exact path='/' component={ContactView}/>
+                    <Route path='/create' component={CreateContact}/>
+                </Switch>
             </div>
         );
     }
