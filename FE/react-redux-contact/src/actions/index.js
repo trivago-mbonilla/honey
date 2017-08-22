@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-fetch';
 
 // http://redux.js.org/docs/basics/Actions.html
 // Actions describe the fact that something happened, but don't specify how the application's state changes in response.
@@ -26,15 +27,15 @@ export function addContact(newContact) {
 export function updateFormNewContact(newValue, field) {
     return {
         type: UPDATE_FORM_NEW_CONTACT,
-        newValue: newValue,
-        field: field
+        newValue,
+        field
     }
 }
 
 export function setIsContactSaved(isContactSaved) {
     return {
         type: SET_IS_CONTACT_SAVED,
-        isContactSaved: isContactSaved
+        isContactSaved
     }
 }
 
@@ -45,7 +46,7 @@ export function removeContact(id) {
     }
 }
 
-function requestContacts() {
+export function requestContacts() {
     return {
         type: REQUEST_CONTACTS
     }
@@ -54,7 +55,7 @@ function requestContacts() {
 function receiveContacts(contacts) {
     return {
         type: RECEIVE_CONTACTS,
-        contacts: contacts
+        contacts
     }
 }
 
@@ -62,7 +63,7 @@ function shouldFetchContacts(state) {
     return (!state.contacts || 0 === state.contacts.length);
 }
 
-function fetchContacts() {
+export function fetchContacts() {
     return dispatch => {
         // First dispatch: the app state is updated to inform
         // that the API call is starting.

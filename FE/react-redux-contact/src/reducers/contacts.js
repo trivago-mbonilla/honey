@@ -1,4 +1,11 @@
-import { ADD_CONTACT, UPDATE_FORM_NEW_CONTACT, SET_IS_CONTACT_SAVED, REMOVE_CONTACT, REQUEST_CONTACTS, RECEIVE_CONTACTS } from '../actions/index';
+import {
+    ADD_CONTACT,
+    UPDATE_FORM_NEW_CONTACT,
+    SET_IS_CONTACT_SAVED,
+    REMOVE_CONTACT,
+    REQUEST_CONTACTS,
+    RECEIVE_CONTACTS
+} from '../actions/index';
 
 const initialState = {
     contacts: [],
@@ -14,7 +21,7 @@ const initialState = {
 function contactReducers(state = initialState, action) {
     switch (action.type) {
         case ADD_CONTACT:
-            action.newContact.id = Math.floor(Math.random() * 100);
+            action.newContact.id = (state.contacts.length + 1);
             return {
                 ...state,
                 contacts: [...state.contacts, action.newContact]
