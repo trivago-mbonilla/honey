@@ -1,15 +1,15 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 const ContactInfo = ({contact, onClick}) =>
     <div>
         <p>
             {contact.name} {contact.lastName} {contact.phone}
-            <button
-                onClick={onClick}
-                type="button"
-            >Delete contact</button>
         </p>
+        <button
+            onClick={onClick}
+            type="button"
+        >Delete contact</button>
         <hr />
     </div>;
 
